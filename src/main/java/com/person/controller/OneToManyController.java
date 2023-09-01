@@ -41,6 +41,11 @@ public class OneToManyController {
 		oneToManyService.saveToDb(person);
 	}
 	
+	@RequestMapping("/SaveAllRecordsBulk")
+	public void oneToManyMappingBulk(@RequestBody Person person) {
+		oneToManyService.saveToDbBulk(person);
+	}
+	
 	
 	
 }

@@ -31,4 +31,16 @@ public class OneToManyService {
 		
 	}
 	
+	public void saveToDbBulk(Person person) {
+		
+		List<Mobile> mobiles=person.getMobiles();
+//		for(Mobile mobile:mobiles) {
+//			mobileNumRepo.save(mobile);
+//		}
+		
+		mobileNumRepo.saveAll(mobiles);
+		personRepo.save(person);
+		
+	}
+	
 }
