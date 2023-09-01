@@ -1,6 +1,8 @@
 package com.person.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,13 +39,15 @@ public class OneToManyController {
 	 */
 	
 	@RequestMapping("/SaveAllRecords")
-	public void oneToManyMapping(@RequestBody Person person) {
-		oneToManyService.saveToDb(person);
+	public ResponseEntity<Person> oneToManyMapping(@RequestBody Person person) {
+		return oneToManyService.saveToDb(person);
+		
 	}
 	
 	@RequestMapping("/SaveAllRecordsBulk")
-	public void oneToManyMappingBulk(@RequestBody Person person) {
-		oneToManyService.saveToDbBulk(person);
+	public ResponseEntity<Person> oneToManyMappingBulk(@RequestBody Person person) {
+		return oneToManyService.saveToDbBulk(person);
+		
 	}
 	
 	

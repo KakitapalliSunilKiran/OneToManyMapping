@@ -3,6 +3,8 @@ package com.person.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.person.model.Mobile;
@@ -20,7 +22,7 @@ public class OneToManyService {
 	@Autowired
 	Mobilerepo mobileNumRepo;
 
-	public void saveToDb(Person person) {
+	public ResponseEntity<Person> saveToDb(Person person) {
 		
 		List<Mobile> mobiles=person.getMobiles();
 		for(Mobile mobile:mobiles) {
@@ -28,19 +30,16 @@ public class OneToManyService {
 		}
 		
 		personRepo.save(person);
+		return ResponseEntity.status(HttpStatus.CREATED).body(person);
 		
 	}
 	
-	public void saveToDbBulk(Person person) {
+	public ResponseEntity<Person> saveToDbBulk(Person person) {
 		
 		List<Mobile> mobiles=person.getMobiles();
-//		for(Mobile mobile:mobiles) {
-//			mobileNumRepo.save(mobile);
-//		}
-		
 		mobileNumRepo.saveAll(mobiles);
 		personRepo.save(person);
-		
+		return ResponseEntity.status(HttpStatus.CREATED).body(person);
 	}
 	
 }
